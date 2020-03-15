@@ -1,17 +1,40 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary"> 
     <ion-title>
-      Tab 1
+      Customer
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-item-divider style="position:fixed; z-index: 1;">
+    <ion-searchbar [(ngModel)]="filter"></ion-searchbar>
+    <ion-button  (click)="obtenerCustomerFiltro(filter)">
+      <ion-icon name="search"></ion-icon>
+    </ion-button>
+    <ion-button (click)="addCustomerForm()">
+      <ion-icon expand="block" size="small" name="add"></ion-icon>
+    </ion-button>
+  </ion-item-divider>
+  <div style="margin-top: 60px;">
+    <ion-card *ngFor="let item of customers">
+      <ion-card-header>
+        <ion-card-subtitle>{{item._id}}</ion-card-subtitle>
+        <ion-card-title>{{item.firstName}} {{item.lastName}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+       address: {{item.address}} <br>
+       city: {{item.city}} <br>
+       country: {{item.country}} <br>
+       district: {{item.district}} <br>
+         <ion-button (click)="updateCustomerForm(item)" size="small" expand="block" color="warning">
+          <ion-icon name="pencil"></ion-icon>
+         </ion-button>
+         <ion-button (click)="confirmDeleteCustomer(item._id,item.firstName,item.lastName)" size="small" expand="block" color="danger">
+          <ion-icon name="trash-outline"></ion-icon>
+         </ion-button>
+         
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
