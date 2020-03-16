@@ -23,7 +23,8 @@ export class Tab1Page {
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'No customers available or registered',
-      duration: 2000
+      duration: 10000,
+      position: "middle"
     });
     toast.present();
   }
