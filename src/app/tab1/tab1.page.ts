@@ -214,6 +214,15 @@ export class Tab1Page {
     this.obtenerCustomer();
     await alert.present();
   }
+
+  async noCustomersFounded() {
+    const toast = await this.toastController.create({
+      message: 'No customers Founded',
+      duration: 3000,
+      position: "top"
+    });
+    toast.present();
+  }
   agregarCustomer(Customer: Object){
     this.service.postCustomer(Customer).then((resp: any)=>{
       console.log(resp.msg);
@@ -249,9 +258,11 @@ export class Tab1Page {
           if(customers.count > 0) {this.customers = customers.Customers;}
           else{
           this.obtenerCustomer();
+          this.noCustomersFounded();
+          console.log('mostrando todo');
           }
         }).catch((err: any) => {
-          console.log(err);
+          console.log(err.msg);
         });
       }
       });
@@ -266,15 +277,18 @@ export class Tab1Page {
            if(customers.count > 0){this.customers = customers.Customers;}
            else{
            this.obtenerCustomer();
+           this.noCustomersFounded();
            }
          }).catch((err: any) =>{
            console.log(err);
             this.obtenerCustomer();
+            this.noCustomersFounded();
          });
         }
        }).catch((err: any) => {
          console.log(err);
          this.obtenerCustomer();
+         this.noCustomersFounded();
        })
     });
   }

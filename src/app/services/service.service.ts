@@ -7,8 +7,8 @@ import { CustomerModel } from '../models/customer';
 })
 export class ServiceService {
 
-  // private url:string = "http://localhost:3000/";
-  private url:string = "https://mongodb-crud-api.herokuapp.com/";
+  private url:string = "http://localhost:3000/";
+  // private url:string = "https://mongodb-crud-api.herokuapp.com/";
 
   constructor(public http:HttpClient) { }
 
