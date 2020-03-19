@@ -1,0 +1,40 @@
+*   [33m8dd5542[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/peckas13[m[33m, [m[1;31morigin/master[m[33m, [m[1;32mpeckas13[m[33m)[m Added rentals and houses
+[31m|[m[32m\[m  
+[31m|[m *   [33m3156fd4[m Merge pull request #3 from peckas13/luisCasta
+[31m|[m [33m|[m[34m\[m  
+[31m|[m [33m|[m * [33m82ec1a2[m se agrogo el dumpCollections
+[31m|[m [33m|[m[33m/[m  
+* [33m|[m [33m31fb587[m Commit before pull
+[33m|[m[33m/[m  
+* [33me1318ab[m Modified some style things in customers
+*   [33mbea4e29[m Merge pull request #2 from peckas13/peckas13
+[35m|[m[36m\[m  
+[35m|[m * [33mac92f0a[m Added heroku link
+* [36m|[m   [33mce2a5e4[m Merge pull request #1 from peckas13/peckas13
+[1;31m|[m[36m\[m [36m\[m  
+[1;31m|[m [36m|[m[36m/[m  
+[1;31m|[m * [33mf4f0876[m Finished Get(with filters too), Post, Put and delete of customers
+[1;31m|[m * [33mda7b5f2[m Added a service
+[1;31m|[m[1;31m/[m  
+* [33m7f88a7c[m Added a new ionic base project with services
+* [33m210d572[m Initial commit
+*   [33m8dd5542[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/peckas13[m[33m, [m[1;31morigin/master[m[33m, [m[1;32mpeckas13[m[33m)[m Added rentals and houses
+[31m|[m[32m\[m  
+[31m|[m *   [33m3156fd4[m Merge pull request #3 from peckas13/luisCasta
+[31m|[m [33m|[m[34m\[m  
+[31m|[m [33m|[m * [33m82ec1a2[m se agrogo el dumpCollections
+[31m|[m [33m|[m[33m/[m  
+* [33m|[m [33m31fb587[m Commit before pull
+[33m|[m[33m/[m  
+* [33me1318ab[m Modified some style things in customers
+*   [33mbea4e29[m Merge pull request #2 from peckas13/peckas13
+[35m|[m[36m\[m  
+[35m|[m * [33mac92f0a[m Added heroku link
+* [36m|[m   [33mce2a5e4[m Merge pull request #1 from peckas13/peckas13
+[1;31m|[m[36m\[m [36m\[m  
+[1;31m|[m [36m|[m[36m/[m  
+[1;31m|[m * [33mf4f0876[m Finished Get(with filters too), Post, Put and delete of customers
+[1;31m|[m * [33mda7b5f2[m Added a service
+[1;31m|[m[1;31m/[m  
+* [33m7f88a7c[m Added a new ionic base project with services
+* [33m210d572[m Initial commit
