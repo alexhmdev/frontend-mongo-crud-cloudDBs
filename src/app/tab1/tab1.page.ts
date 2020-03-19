@@ -9,7 +9,6 @@ import { ToastController, AlertController } from "@ionic/angular";
 })
 export class Tab1Page {
   customers: any;
-  customer: CustomerModel = new CustomerModel();
   filter: any;
   constructor(public service:ServiceService, private toastController:ToastController,private alertController: AlertController) {}
 
