@@ -311,5 +311,12 @@ export class Tab1Page {
       console.log(err.msg);
     })
   }
-  
+
+  dumpCollections(){
+    this.service.dumpDataBase().then((resp: any)=>{
+      console.log(resp);
+    }).catch((err)=> {
+      console.log(err);
+    })
+  }
 }

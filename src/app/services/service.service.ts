@@ -39,5 +39,7 @@ export class ServiceService {
   putCustomer(bodyCustomer: any, id: any){
     return this.http.put(`${this.url}customer/actualizar/${id}`,bodyCustomer).toPromise();
   }
-
+  dumpDataBase(){
+    return this.http.get(`${this.url}dump/collections`).toPromise();
+  }
 }
