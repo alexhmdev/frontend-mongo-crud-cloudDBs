@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar class="background">
     <ion-title>
-      Tab 3
+      Rentals
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,26 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Rentals</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div>
+    <ion-card *ngFor="let item of rentalData">
+      <ion-card-header>
+        <ion-card-subtitle>{{item.idListingAndReview.name}}</ion-card-subtitle>
+        <ion-card-title>{{item.idCustomer.firstName}} {{item.idCustomer.lastName}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <img src={{item.idListingAndReview.images.picture_url}} alt="">
+        <ion-item>
+          <ion-label>From: {{item.rentalDate.substring(0,10)}}</ion-label>
+          <ion-label>To: {{item.returnDate.substring(0,10)}}</ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    <br>
+    <br>
+  </div>
+  
 </ion-content>
