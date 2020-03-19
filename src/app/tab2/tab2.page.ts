@@ -137,10 +137,13 @@ export class Tab2Page {
             console.log('Confirm Ok');
             console.log(alertData);
             this.service.postRental(alertData).then((resp:any)=>{
+              this.obtenerCasas(this.desde);
               console.log(resp);
             }).catch((err)=>{
               console.log(err);
             })
+          
+
           }
         }
       ]

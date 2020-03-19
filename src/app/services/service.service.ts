@@ -69,5 +69,7 @@ export class ServiceService {
   getProperties(){
     return this.http.get(`${this.url}rentals/propiedades`).toPromise();
   }
-  
+  deletedesrentar(idCasa: any,idRental: any){
+    return this.http.delete(`${this.url}rentals/desrentar/${idCasa}/${idRental}`).toPromise();
+  }
 }
