@@ -1,7 +1,8 @@
+/* jshint esversion: 8 */
 import { Component } from '@angular/core';
-import { ServiceService } from "../services/service.service";
-import { CustomerModel } from "../models/customer";
-import { ToastController, AlertController } from "@ionic/angular";
+import { ServiceService } from '../services/service.service';
+import { CustomerModel } from '../models/customer';
+import { ToastController, AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -10,14 +11,15 @@ import { ToastController, AlertController } from "@ionic/angular";
 export class Tab1Page {
   customers: any;
   filter: any;
-  constructor(public service:ServiceService, private toastController:ToastController,private alertController: AlertController) {}
+  constructor(public service: ServiceService, private toastController: ToastController, private alertController: AlertController) {}
 
-  ngOnInit(){
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnInit() {
     this.obtenerCustomer();
   }
 
-  
-  
+
+
 
   async presentToast() {
     const toast = await this.toastController.create({
@@ -27,7 +29,6 @@ export class Tab1Page {
     });
     toast.present();
   }
-  
   async confirmDeleteCustomer(id: any, name: any, lastName: any) {
     const alert = await this.alertController.create({
       header: 'Confirm!',
@@ -39,7 +40,7 @@ export class Tab1Page {
           cssClass: 'secondary',
           handler: () => {
             console.log('Confirm Cancel: blah');
-            
+
           }
         }, {
           text: 'Okay',
@@ -51,7 +52,7 @@ export class Tab1Page {
         }
       ]
     });
-  
+
     await alert.present();
   }
 
@@ -62,7 +63,7 @@ export class Tab1Page {
       message: 'Please verify and try again',
       buttons: ['OK']
     });
-  
+
     await alert.present();
   }
   async addCustomerForm() {
@@ -90,7 +91,7 @@ export class Tab1Page {
           type: 'text',
           placeholder: 'City'
         },
-        
+
         {
           name: 'district',
           type: 'text',
@@ -115,11 +116,12 @@ export class Tab1Page {
           handler: (alertData) => {
             console.log('Confirm Ok');
             console.log(alertData);
-            if(alertData.firstName == "" || alertData.lastName == "" || alertData.country == "" ||alertData.city == ""|| alertData.district == "" ||
-            alertData.address == ""){
+            // tslint:disable-next-line: quotemark
+            // tslint:disable-next-line: max-line-length
+            if (alertData.firstName == "" || alertData.lastName == "" || alertData.country == "" || alertData.city == "" || alertData.district == "" ||
+            alertData.address == "") {
               this.warning();
-            }
-            else {
+            } else {
             this.agregarCustomer(alertData);
             }
           }
@@ -158,7 +160,7 @@ export class Tab1Page {
           value: customer.city,
           placeholder: 'City'
         },
-        
+
         {
           name: 'district',
           type: 'text',
@@ -185,7 +187,7 @@ export class Tab1Page {
           handler: (alertData) => {
             console.log('Confirm Ok');
             console.log(alertData);
-            this.modificarCustomer(customer._id,alertData);
+            this.modificarCustomer(customer._id, alertData);
           }
         }
       ]
@@ -218,44 +220,44 @@ export class Tab1Page {
     const toast = await this.toastController.create({
       message: 'No customers Founded',
       duration: 3000,
+      // tslint:disable-next-line: quotemark
       position: "top"
     });
     toast.present();
   }
-  agregarCustomer(Customer: Object){
-    this.service.postCustomer(Customer).then((resp: any)=>{
+  // tslint:disable-next-line: ban-types
+  agregarCustomer(Customer: Object) {
+    this.service.postCustomer(Customer).then((resp: any) => {
       console.log(resp.msg);
-      this.addedSuccessfully(resp.Customers.firstName,resp.Customers._id);
-    }).catch((err: any)=>{
+      this.addedSuccessfully(resp.Customers.firstName, resp.Customers._id);
+    }).catch((err: any) => {
       console.log(err);
     });
   }
 
-  obtenerCustomer(){
-    this.service.getCustomers().then((customers: any) =>{
+  obtenerCustomer() {
+    this.service.getCustomers().then((customers: any) => {
         this.customers = customers.customers;
-    }).catch((err: any)=>{
+    }).catch((err: any) => {
       this.presentToast();
       console.log(err.cont);
     });
   }
 
-  obtenerCustomerFiltro(filter: any){
-    if(filter == ""){
+  obtenerCustomerFiltro(filter: any) {
+    if (filter == "") {
       this.obtenerCustomer();
-    }
-    else {
-    this.service.getCustomersFilterId(filter).then((customers: any) =>{
-      if(customers.count > 0){
+    } else {
+    this.service.getCustomersFilterId(filter).then((customers: any) => {
+      if (customers.count > 0) {
          this.customers = customers.Customers;
-      }
-      else {
-      this.service.getCustomersFilterName(filter).then((customers: any) =>{
-        if(customers.count > 0){this.customers = customers.Customers;}
-        else {
-        this.service.getCustomersFilterCountry(filter).then((customers: any) =>{
-          if(customers.count > 0) {this.customers = customers.Customers;}
-          else{
+      } else {
+      // tslint:disable-next-line: no-shadowed-variable
+      this.service.getCustomersFilterName(filter).then((customers: any) => {
+        if (customers.count > 0) {this.customers = customers.Customers; } else {
+        // tslint:disable-next-line: no-shadowed-variable
+        this.service.getCustomersFilterCountry(filter).then((customers: any) => {
+          if (customers.count > 0) {this.customers = customers.Customers; } else {
           this.obtenerCustomer();
           this.noCustomersFounded();
           console.log('mostrando todo');
@@ -266,24 +268,30 @@ export class Tab1Page {
       }
       });
     }
-    }).catch((err: any) =>{
-       this.service.getCustomersFilterName(filter).then((customers: any)=>{
-         if(customers.count > 0) {
+    }).catch((err: any) => {
+       this.service.getCustomersFilterName(filter).then((customers: any) => {
+         if (customers.count > 0) {
            this.customers = customers.Customers;
          }
+         // tslint:disable-next-line: one-line
          else {
          this.service.getCustomersFilterCountry(filter).then((customers: any) => {
-           if(customers.count > 0){this.customers = customers.Customers;}
+           if (customers.count > 0) {this.customers = customers.Customers; }
+           // tslint:disable-next-line: one-line
            else{
            this.obtenerCustomer();
            this.noCustomersFounded();
            }
-         }).catch((err: any) =>{
+         // tslint:disable-next-line: no-shadowed-variable
+         }).catch((err: any) => {
            console.log(err);
+            // tslint:disable-next-line: align
             this.obtenerCustomer();
+            // tslint:disable-next-line: align
             this.noCustomersFounded();
          });
         }
+       // tslint:disable-next-line: no-shadowed-variable
        }).catch((err: any) => {
          console.log(err);
          this.obtenerCustomer();
@@ -293,8 +301,8 @@ export class Tab1Page {
   }
   }
 
-  modificarCustomer(id: any, Customer: object){
-    this.service.putCustomer(Customer,id).then((customers: any) => {
+  modificarCustomer(id: any, Customer: object) {
+    this.service.putCustomer(Customer, id).then((customers: any) => {
       this.updateSuccessfully(customers.Customers.name, customers.Customers._id);
       console.log(customers.Customers);
     }).catch((err: any) => {
@@ -302,19 +310,21 @@ export class Tab1Page {
     })
   }
 
-  eliminarCustomer(id:Number){
-    this.service.deleteCustomer(id).then((customers: any)=>{
+  // tslint:disable-next-line: ban-types
+  eliminarCustomer(id: Number) { // funcion que manda a llamar servicios para que se realice la integracion con el front y el back
+    this.service.deleteCustomer(id).then((customers: any) => {
       console.log(customers.msg);
       this.obtenerCustomer();
-    }).catch((err)=> {
+    }).catch((err) => {
       console.log(err.msg);
     })
   }
-
-  dumpCollections(){
-    this.service.dumpDataBase().then((resp: any)=>{
+// tslint:disable-next-line: ban-types
+  // tslint:disable-next-line: comment-format
+  dumpCollections() {//genera el dump de las collections
+    this.service.dumpDataBase().then((resp: any) => {
       console.log(resp);
-    }).catch((err)=> {
+    }).catch((err) => {
       console.log(err);
     })
   }

@@ -8,5 +8,14 @@ import { Component } from '@angular/core';
 export class TabsPage {
 
   constructor() {}
+  rental() {
+  location.pathname = './tabs/tab3';
+  }
 
+  house() {
+    location.pathname = './tabs/tab2';
+    }
+  customer() {
+      location.pathname = './tabs/tab1';
+      }
 }

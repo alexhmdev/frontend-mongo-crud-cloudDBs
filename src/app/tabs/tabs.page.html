@@ -1,17 +1,17 @@
 <ion-tabs>
 
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="tab1">
+    <ion-tab-button tab="tab1" (click)="customer()">
       <ion-icon name="people-circle-outline"></ion-icon>
       <ion-label>Customers</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2">
+    <ion-tab-button tab="tab2" (click)="house()">
       <ion-icon name="home-sharp"></ion-icon>
       <ion-label>Houses</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab3">
+    <ion-tab-button tab="tab3" (click)="rental()">
       <ion-icon name="archive-outline"></ion-icon>
       <ion-label>Rentals</ion-label>
     </ion-tab-button>

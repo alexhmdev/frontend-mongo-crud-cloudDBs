@@ -25,7 +25,12 @@
           <ion-label>From: {{item.rentalDate.substring(0,10)}}</ion-label>
           <ion-label>To: {{item.returnDate.substring(0,10)}}</ion-label>
         </ion-item>
+        <ion-button (click)="devolver(item.idListingAndReview._id, item._id)"  size="small" fill="clear" expand="full">
+          <ion-icon slot="icon-only" size="large" style="color:#FF5A60; padding: 5px;" name="refresh-outline" ></ion-icon>
+          Return
+        </ion-button>
       </ion-card-content>
+      
     </ion-card>
     <br>
     <br>
