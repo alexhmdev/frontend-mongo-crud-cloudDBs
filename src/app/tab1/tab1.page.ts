@@ -1,7 +1,6 @@
 /* jshint esversion: 8 */
 import { Component } from '@angular/core';
 import { ServiceService } from '../services/service.service';
-import { CustomerModel } from '../models/customer';
 import { ToastController, AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-tab1',
@@ -25,7 +24,7 @@ export class Tab1Page {
     const toast = await this.toastController.create({
       message: 'No customers available or registered',
       duration: 10000,
-      position: "middle"
+      position: 'middle'
     });
     toast.present();
   }
@@ -311,7 +310,7 @@ export class Tab1Page {
   }
 
   // tslint:disable-next-line: ban-types
-  eliminarCustomer(id: Number) { // funcion que manda a llamar servicios para que se realice la integracion con el front y el back
+  eliminarCustomer(id: number) { // funcion que manda a llamar servicios para que se realice la integracion con el front y el back
     this.service.deleteCustomer(id).then((customers: any) => {
       console.log(customers.msg);
       this.obtenerCustomer();
@@ -319,13 +318,25 @@ export class Tab1Page {
       console.log(err.msg);
     })
   }
+  async dumpCreated() {
+    const alert = await this.alertController.create({
+      header: 'Succesful',
+      subHeader: 'Dump Created Succesfully',
+      message: 'Saved in ./dump',
+      buttons: ['OK']
+    });
+  
+    await alert.present();
+  }
 // tslint:disable-next-line: ban-types
   // tslint:disable-next-line: comment-format
   dumpCollections() {//genera el dump de las collections
+
     this.service.dumpDataBase().then((resp: any) => {
       console.log(resp);
+      this.dumpCreated();
     }).catch((err) => {
       console.log(err);
-    })
+    });
   }
 }

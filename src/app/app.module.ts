@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { EventEmitterService } from './event-emitter.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     StatusBar,
     SplashScreen,
+    EventEmitterService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

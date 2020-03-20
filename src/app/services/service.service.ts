@@ -7,10 +7,10 @@ import { CustomerModel } from '../models/customer';
 })
 export class ServiceService {
 
-  private url:string = "http://localhost:3000/";
-  //private url:string = "https://mongodb-crud-api.herokuapp.com/";
+  private url = 'http://localhost:3000/';
+ // private url = 'https://mongodb-crud-api.herokuapp.com/';
 
-  constructor(public http:HttpClient) { }
+  constructor(public http: HttpClient) { }
 
 
   getCustomers(){
@@ -28,7 +28,7 @@ export class ServiceService {
     return this.http.get(`${this.url}customer/obtenerXpais/${filter}`).toPromise();
   }
 
-  deleteCustomer(id: Number){
+  deleteCustomer(id: number){
     return this.http.delete(`${this.url}customer/eliminar/${id}`).toPromise();
   }
 
@@ -36,7 +36,7 @@ export class ServiceService {
     return this.http.post(`${this.url}customer/registrar`,bodyCustomer).toPromise();
   }
 
-  postRental(bodyRental:any){
+  postRental(bodyRental: any){
     return this.http.post(`${this.url}rentals/registrar`,bodyRental).toPromise();
   }
   putCustomer(bodyCustomer: any, id: any){
@@ -62,8 +62,8 @@ export class ServiceService {
     return this.http.get(`${this.url}rentals/mostrar`).toPromise();
   }
 
-  getHousesByPropertyType(property: any){
-    return this.http.get(`${this.url}rentals/obtenerXpropiedad/${property}`).toPromise();
+  getHousesByPropertyType(property: any, desde: any) {
+    return this.http.get(`${this.url}rentals/obtenerXpropiedad/${property}/${desde}`).toPromise();
   }
 
   getProperties(){

@@ -29,7 +29,7 @@
       <ion-select [(ngModel)]="type" style="width: 100%;">
         <ion-select-option *ngFor="let item of properties">{{item}}</ion-select-option>
       </ion-select>
-    <ion-button (click)="obtenerCasasPorPropiedad(type)" size="small" fill="clear" shape="round">
+    <ion-button (click)="obtenerCasasPorPropiedad(type,desde)" size="small" fill="clear" shape="round">
       <ion-icon slot="start" name="search"></ion-icon>
     </ion-button>
   </ion-item-divider>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ServiceService } from '../services/service.service';
-import { AngularDelegate } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -10,17 +10,30 @@ import { AngularDelegate } from '@ionic/angular';
 export class Tab3Page {
 
   rentalData:any;
-  constructor(public service: ServiceService ) {}
+  constructor(public service: ServiceService, private toastController: ToastController ) {}
   // tslint:disable-next-line: use-lifecycle-interface
-  ngOnInit(){
-    this.obtenerRentas()
+  ngOnInit() {
+    this.obtenerRentas();
   }
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'No rentals in progress',
+      duration: 4000,
+      position: 'middle'
+    });
+    toast.present();
+  }
   obtenerRentas(){
     this.service.getRentals().then((resp: any) => {
+      if(resp.count <= 0)  {
       this.rentalData = resp.resp;
       console.log(resp.resp);
-    }).catch((err)=>{
+      this.presentToast();
+      }
+      this.rentalData = resp.resp;
+      console.log(resp.resp);
+    }).catch((err) => {
       console.log(err);
     });
   }

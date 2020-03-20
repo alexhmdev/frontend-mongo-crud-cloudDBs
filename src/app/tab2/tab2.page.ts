@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ServiceService } from '../services/service.service';
 import { ToastController, AlertController } from '@ionic/angular';
 
@@ -7,7 +7,7 @@ import { ToastController, AlertController } from '@ionic/angular';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit{
 
   houses: any;
   desde: number = 0;
@@ -19,7 +19,7 @@ export class Tab2Page {
   properties: any;
 
   customers:any;
-  constructor(private service:ServiceService, private toastController: ToastController,private alertController: AlertController) {}
+  constructor(private service: ServiceService, private toastController: ToastController,private alertController: AlertController) {}
 
   ngOnInit(){
     this.obtenerCasas(this.desde);
@@ -35,50 +35,53 @@ export class Tab2Page {
     toast.present();
   }
 
-  obtenerPropiedades(){
-    this.service.getProperties().then((resp:any)=>{
+  obtenerPropiedades() {
+    this.service.getProperties().then((resp: any) => {
       this.properties = resp.resp;
       console.log(resp.resp);
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err);
     });
   }
   obtenerCasas(desde:Number){
       if(this.min && this.max > 0){
-        this.obtenerCasasPorPrecio(this.min,this.max,this.desde);
-      }
-      else {
-        this.service.getListingAndReviews(desde).then((resp:any)=>{
+        this.obtenerCasasPorPrecio(this.min, this.max, this.desde);
+      } else if (this.type) {
+        this.obtenerCasasPorPropiedad(this.type);
+      } else {
+        this.service.getListingAndReviews(desde).then((resp: any) => {
           if(resp.count>0){
             this.houses = resp.resp;
             console.log(resp.resp);
-          }
-          else {
+          } else {
             this.noHousesFounded();
           }
-          
+
         }).catch((err)=>{
           console.log(err);
         });
       }
-  }
+      }
 
   obtenerCasasPorPrecio(minimo: Number, maximo: Number, desde: Number){
     this.service.getByPriceRange(minimo,maximo,desde).then((resp: any)=>{
       this.houses = resp.resp;
       console.log(resp.resp);
-    }).catch((err)=>{
-      console.log(err);
-    })
-  }
-
-  obtenerCasasPorPropiedad(property: any){
-    this.service.getHousesByPropertyType(property).then((resp:any) => {
-      this.houses = resp.resp;
-      console.log(resp.resp);
-    }).catch((err)=>{
+    }).catch((err) => {
       console.log(err);
     });
+  }
+
+  obtenerCasasPorPropiedad(property: any) {
+    if (this.desde < 0) {this.desde = 0; }
+    else {
+    this.service.getHousesByPropertyType(property, this.desde).then((resp: any) => {
+      this.houses = resp.resp;
+      console.log(resp.resp);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
   }
 
   prevPage(){
@@ -104,7 +107,7 @@ export class Tab2Page {
 
   async rentHouse( listingId: any) {
     const alert = await this.alertController.create({
-      header: 'Add customer',
+      header: 'Booking',
       inputs: [
         {
           name: 'idCustomer',
